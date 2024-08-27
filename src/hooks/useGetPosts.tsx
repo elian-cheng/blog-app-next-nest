@@ -1,0 +1,30 @@
+"use client";
+
+import { useState } from "react";
+import { AxiosError } from "axios";
+import { IPostsResponse } from "@/interfaces/PostInterface";
+import axiosInstance from "@/utils/axiosInstance";
+
+const useGetPosts = () => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<null | IPostsResponse>(null);
+  const [error, setError] = useState<null | AxiosError>(null);
+
+  const getPostsData = async (page: number, limit: number) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { data } = await axiosInstance.get(`/posts?page=${page}&limit=${limit}`);
+      setData(data);
+    } catch (error) {
+      setError(error as AxiosError);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { loading, data, error, getPostsData };
+};
+
+export default useGetPosts;
