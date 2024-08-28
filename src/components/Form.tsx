@@ -1,8 +1,8 @@
 "use client";
 
 import "react-quill/dist/quill.bubble.css";
-import ReactQuill from "react-quill";
-import { FC } from "react";
+import { FC, useMemo } from "react";
+import dynamic from "next/dynamic";
 
 interface IFormProps {
   title: string;
@@ -29,6 +29,51 @@ const Form: FC<IFormProps> = ({
   handleSubmit,
   isSubmitting
 }) => {
+  const ReactQuill = useMemo(
+    () =>
+      dynamic(() => import("react-quill"), {
+        ssr: false,
+        loading: () => <p>Please wait for loading…</p>
+      }),
+    []
+  );
+
+  const modules = useMemo(
+    () => ({
+      toolbar: [
+        [{ header: "1" }, { header: "2" }, { font: [] }],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["bold", "italic", "underline", "strike"],
+        [{ color: [] }, { background: [] }],
+        [{ script: "sub" }, { script: "super" }],
+        [{ align: [] }],
+        ["link"],
+        ["blockquote", "code-block"],
+        ["clean"]
+      ]
+    }),
+    []
+  );
+
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "color",
+    "background",
+    "align",
+    "script"
+  ];
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -65,6 +110,8 @@ const Form: FC<IFormProps> = ({
         theme="bubble"
         value={content}
         onChange={setContent}
+        modules={modules}
+        formats={formats}
         placeholder="Write your post content here..."
       />
       <button
@@ -75,4 +122,5 @@ const Form: FC<IFormProps> = ({
     </form>
   );
 };
+
 export default Form;

@@ -2,21 +2,18 @@
 
 import { useState } from "react";
 import { AxiosError } from "axios";
-import { IPost } from "@/interfaces/PostInterface";
 import axiosInstance from "@/utils/axiosInstance";
 
-const useGetPost = () => {
+const useDeletePost = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<null | IPost>(null);
   const [error, setError] = useState<null | AxiosError>(null);
 
-  const getPostData = async (id: string) => {
+  const deletePost = async (id: string) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const { data } = await axiosInstance.get(`/posts/${id}`);
-      setData(data);
+      await axiosInstance.delete(`/posts/${id}`);
     } catch (error) {
       setError(error as AxiosError);
       alert(`Something went wrong. ${(error as AxiosError).message}`);
@@ -25,7 +22,7 @@ const useGetPost = () => {
     }
   };
 
-  return { isLoading, data, error, getPostData };
+  return { isLoading, error, deletePost };
 };
 
-export default useGetPost;
+export default useDeletePost;

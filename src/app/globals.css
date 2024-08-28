@@ -31,3 +31,19 @@ body {
 .glassmorphism {
   @apply rounded-xl border border-gray-200 bg-white/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
+
+.orange_button {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out;
+}
+
+.orange_button:hover {
+  @apply bg-gradient-to-r from-yellow-500 via-orange-600 to-amber-500;
+}
+
+.green_button {
+  @apply bg-gradient-to-r from-green-400 to-green-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out;
+}
+
+.green_button:hover {
+  @apply bg-gradient-to-r from-green-500 to-green-400;
+}
