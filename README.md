@@ -3,7 +3,7 @@
 ## 📋 <a name="table">Table of Contents</a>
 
 1. 🤖 [Overview](#overview)
-2. 🚀 [Deploy](#deploy)
+2. 🚀 [Deploy](#deployment)
 3. ⚙️ [Tech Stack](#tech-stack)
 4. 🔋 [Features](#features)
 5. 🤸 [Quick Start](#quick-start)
@@ -12,7 +12,7 @@
 
 This project is a simple blog application built with Next.js and TypeScript, featuring a responsive design with Tailwind CSS. It includes a comprehensive RESTful API backend developed using Nest.js and MongoDB. The application allows users to create, read, update, and delete blog posts, with content managed via a WYSIWYG editor and displayed as HTML.
 
-## <a name="deploy">🚀 Deploy</a>
+## <a name="deployment">🚀 Deploy</a>
 
 ### Front-end deploy:
 
@@ -105,4 +105,6 @@ DATABASE_URL=
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project front-end.
+Open [http://localhost:5000](http://localhost:5000) in your browser to view the project back-end.
+Open [http://localhost:5000/docs](http://localhost:5000/docs) or [https://elian-next-nest-blog-api.onrender.com/docs](https://elian-next-nest-blog-api.onrender.com/docs) in your browser to view the project API Swagger documentation.
