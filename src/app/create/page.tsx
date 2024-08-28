@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import Form from "@/components/Form";
 import useCreatePost from "@/hooks/useCreatePost";
 
-const CreatePost = () => {
+const CreatePostPage = () => {
   const { createPost, isLoading } = useCreatePost();
   const [image, setImage] = useState("");
   const [content, setContent] = useState("");
@@ -34,4 +34,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default CreatePostPage;

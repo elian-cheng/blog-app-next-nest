@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { AxiosError } from "axios";
 import { IPostsResponse } from "@/interfaces/PostInterface";
 import axiosInstance from "@/utils/axiosInstance";
@@ -10,7 +8,7 @@ const useGetPosts = () => {
   const [data, setData] = useState<null | IPostsResponse>(null);
   const [error, setError] = useState<null | AxiosError>(null);
 
-  const getPostsData = async (page: number, limit: number) => {
+  const getPostsData = useCallback(async (page: number, limit: number) => {
     setIsLoading(true);
     setError(null);
 
@@ -22,7 +20,7 @@ const useGetPosts = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   return { isLoading, data, error, getPostsData };
 };

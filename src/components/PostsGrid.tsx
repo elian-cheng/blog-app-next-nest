@@ -12,7 +12,7 @@ export interface IPostsGridProps {
 const PostsGrid: FC<IPostsGridProps> = ({ posts }) => {
   const router = useRouter();
   const { deletePost, error } = useDeletePost();
-  const [myPosts, setMyPosts] = useState(posts);
+  const [allPosts, setAllPosts] = useState(posts);
 
   const handleEdit = (id: string) => {
     router.push(`/edit?id=${id}`);
@@ -24,8 +24,8 @@ const PostsGrid: FC<IPostsGridProps> = ({ posts }) => {
     if (hasConfirmed) {
       await deletePost(id);
       if (error) return;
-      const filteredPosts = myPosts.filter(item => item.id !== id);
-      setMyPosts(filteredPosts);
+      const filteredPosts = allPosts.filter(item => item.id !== id);
+      setAllPosts(filteredPosts);
     }
   };
 
@@ -33,7 +33,7 @@ const PostsGrid: FC<IPostsGridProps> = ({ posts }) => {
     <div className="bg-white pb-5">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-          {myPosts.map(post => (
+          {allPosts.map(post => (
             <article
               key={post.id}
               className="flex flex-col h-full">

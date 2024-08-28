@@ -8,7 +8,7 @@ import { ITEMS_PER_PAGE } from "@/utils/constants";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+const HomePage = () => {
   const { isLoading, data, error, getPostsData } = useGetPosts();
   const [page, setPage] = useState(1);
 
@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     getPostsData(page, ITEMS_PER_PAGE);
-  }, [page]);
+  }, [getPostsData, page]);
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 lg:p-16">
@@ -48,4 +48,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -10,13 +10,13 @@ interface ISinglePostProps {
   };
 }
 
-const SinglePost: FC<ISinglePostProps> = ({ params }) => {
+const SinglePostPage: FC<ISinglePostProps> = ({ params }) => {
   const { id } = params;
   const { isLoading, data, error, getPostData } = useGetPost();
 
   useEffect(() => {
     getPostData(id);
-  }, []);
+  }, [getPostData, id]);
 
   return (
     <main>
@@ -52,4 +52,4 @@ const SinglePost: FC<ISinglePostProps> = ({ params }) => {
     </main>
   );
 };
-export default SinglePost;
+export default SinglePostPage;
