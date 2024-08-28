@@ -28,7 +28,7 @@ export class PostsService {
     const totalPosts = await this.prisma.post.count();
 
     return {
-      data: posts,
+      posts,
       totalPosts,
     };
   }

@@ -9,6 +9,7 @@ import {
   HttpCode,
   HttpStatus,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -24,7 +25,12 @@ export class PostsController {
   }
 
   @Get()
-  findAll(@Query('page') page?: number, @Query('limit') limit?: number) {
+  findAll(
+    @Query('page', new ParseIntPipe({ errorHttpStatusCode: 400 }))
+    page?: number,
+    @Query('limit', new ParseIntPipe({ errorHttpStatusCode: 400 }))
+    limit?: number,
+  ) {
     return this.postsService.findAll(page, limit);
   }
 
