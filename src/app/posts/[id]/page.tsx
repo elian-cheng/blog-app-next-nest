@@ -12,7 +12,7 @@ interface ISinglePostProps {
 
 const SinglePost: FC<ISinglePostProps> = ({ params }) => {
   const { id } = params;
-  const { loading, data, error, getPostData } = useGetPost();
+  const { isLoading, data, error, getPostData } = useGetPost();
 
   useEffect(() => {
     getPostData(id);
@@ -20,7 +20,7 @@ const SinglePost: FC<ISinglePostProps> = ({ params }) => {
 
   return (
     <main>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : error ? (
         <h5>{error.message}</h5>

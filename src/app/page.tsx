@@ -5,10 +5,11 @@ import Pagination from "@/components/Pagination";
 import PostsGrid from "@/components/PostsGrid";
 import useGetPosts from "@/hooks/useGetPosts";
 import { ITEMS_PER_PAGE } from "@/utils/constants";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const { loading, data, error, getPostsData } = useGetPosts();
+  const { isLoading, data, error, getPostsData } = useGetPosts();
   const [page, setPage] = useState(1);
 
   const handlePage = (page: number) => {
@@ -20,11 +21,18 @@ const Home = () => {
   }, [page]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 lg:p-24">
-      {loading ? (
+    <main className="flex min-h-screen flex-col items-center p-4 lg:p-16">
+      {isLoading ? (
         <Loader />
       ) : data ? (
         <>
+          <div className="flex justify-end mb-8">
+            <Link
+              href="/create"
+              className="rounded-full border border-blue-600 bg-blue-600 py-2 px-7 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center">
+              Create Post
+            </Link>
+          </div>
           <PostsGrid posts={data?.posts} />
           <Pagination
             page={page}

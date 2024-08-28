@@ -6,12 +6,12 @@ import { IPost } from "@/interfaces/PostInterface";
 import axiosInstance from "@/utils/axiosInstance";
 
 const useGetPost = () => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<null | IPost>(null);
   const [error, setError] = useState<null | AxiosError>(null);
 
   const getPostData = async (id: string) => {
-    setLoading(true);
+    setIsLoading(true);
     setError(null);
 
     try {
@@ -20,11 +20,11 @@ const useGetPost = () => {
     } catch (error) {
       setError(error as AxiosError);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { loading, data, error, getPostData };
+  return { isLoading, data, error, getPostData };
 };
 
 export default useGetPost;

@@ -6,12 +6,12 @@ import { IPostsResponse } from "@/interfaces/PostInterface";
 import axiosInstance from "@/utils/axiosInstance";
 
 const useGetPosts = () => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<null | IPostsResponse>(null);
   const [error, setError] = useState<null | AxiosError>(null);
 
   const getPostsData = async (page: number, limit: number) => {
-    setLoading(true);
+    setIsLoading(true);
     setError(null);
 
     try {
@@ -20,11 +20,11 @@ const useGetPosts = () => {
     } catch (error) {
       setError(error as AxiosError);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { loading, data, error, getPostsData };
+  return { isLoading, data, error, getPostsData };
 };
 
 export default useGetPosts;
