@@ -8,7 +8,7 @@ export const Loader = () => {
           className="w-full h-full">
           <path
             fill="none"
-            stroke="#B0F240"
+            stroke="#2563EB"
             strokeWidth="15"
             strokeLinecap="round"
             strokeDasharray="300 385"

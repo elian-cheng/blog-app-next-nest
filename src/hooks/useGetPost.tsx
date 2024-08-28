@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { AxiosError } from "axios";
+import { IPost } from "@/interfaces/PostInterface";
 import axiosInstance from "@/utils/axiosInstance";
 
 const useGetPost = () => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<null | IPost>(null);
   const [error, setError] = useState<null | AxiosError>(null);
 
   const getPostData = async (id: string) => {

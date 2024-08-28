@@ -20,7 +20,7 @@ const Home = () => {
   }, [page]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main className="flex min-h-screen flex-col items-center p-4 lg:p-24">
       {loading ? (
         <Loader />
       ) : data ? (
